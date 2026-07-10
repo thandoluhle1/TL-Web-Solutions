@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tlwebsolutions.co.za/sitemap.xml

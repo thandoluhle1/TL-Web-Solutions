@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1200" y2="630" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#070B14"/>
+      <stop offset="1" stop-color="#0D1A32"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1050" cy="40" r="360" fill="#2563EB" fill-opacity=".1"/>
+  <text x="100" y="300" font-family="Arial, Helvetica, sans-serif" font-size="150" font-weight="800">
+    <tspan fill="#FFFFFF">T</tspan><tspan fill="#38BDF8">L</tspan>
+  </text>
+  <text x="106" y="380" fill="#94A3B8" font-family="Arial, sans-serif" font-size="34" font-weight="600" letter-spacing="10">WEB SOLUTIONS</text>
+  <text x="100" y="470" fill="white" font-family="Arial, sans-serif" font-size="52" font-weight="700">Premium web design for South African businesses.</text>
+</svg>
