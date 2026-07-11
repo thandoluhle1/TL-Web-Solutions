@@ -35,22 +35,8 @@ const whatsappUrl = `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURICompo
 function WhatsAppIcon({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className={className}>
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.71.306 1.263.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04.99-1.04 2.38 0 1.391.847 2.76 1.025 2.952.174.19 2.44 3.87 5.995 5.45.835.358 1.487.572 1.993.732.836.268 1.598.231 2.2.14.671-.1 2.065-.847 2.356-1.662.29-.814.29-1.512.202-1.655-.087-.144-.286-.233-.602-.384z" />
     </svg>
-  );
-}
-
-function FloatingWhatsApp() {
-  return (
-    <a
-      href={whatsappUrl}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Chat with us on WhatsApp"
-      className="fixed bottom-6 left-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/30 transition hover:scale-105"
-    >
-      <WhatsAppIcon className="h-7 w-7" />
-    </a>
   );
 }
 
@@ -196,7 +182,7 @@ export default function App() {
       <Footer navigate={navigate} />
 
       {toast && (
-        <div role="status" className="fixed bottom-6 left-1/2 z-[90] flex -translate-x-1/2 items-center gap-2 rounded-xl border border-sky-400/30 bg-slate-900 px-4 py-3 text-sm font-semibold text-white shadow-2xl shadow-black/40">
+        <div role="status" className="fixed bottom-6 left-1/2 z-[90] flex -translate-x-1/2 items-center gap-2 rounded-xl border border-sky-400/30 bg-slate-900 px-4 py-3 text-sm font-semibold text-sky-300">
           <Check className="h-4 w-4 text-sky-400" />
           {toast}
         </div>
@@ -212,8 +198,6 @@ export default function App() {
           <ArrowUp className="h-4 w-4" />
         </button>
       )}
-
-      <FloatingWhatsApp />
 
       {!cookieChoice && <CookieBanner onChoice={setCookies} navigate={navigate} />}
     </div>
@@ -340,7 +324,7 @@ function HomePage({ navigate }: { navigate: (route: Route) => void }) {
 
       <Section className="border-y border-white/7 bg-[#0A101C]">
         <div data-reveal className="reveal">
-          <SectionIntro eyebrow="Services" title="The essentials your website needs to work well." text="From a new business website to a thoughtful redesign, every service is shaped around a clear objective." />
+          <SectionIntro eyebrow="Services" title="The essentials your website needs to work well." text="From a new business website to a thoughtful redesign, every service is shaped around a clear strategy." />
           <div className="mt-12 divide-y divide-white/8 border-y border-white/8">
             {services.slice(0, 4).map((service, index) => (
               <ServiceRow key={service.title} service={service} index={index} />
@@ -354,7 +338,7 @@ function HomePage({ navigate }: { navigate: (route: Route) => void }) {
 
       <Section>
         <div data-reveal className="reveal flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <SectionIntro eyebrow="Example projects" title="Concept designs for the businesses we love to build for." text="A selection of original concept designs that show our style and quality. These are examples, not real client projects." />
+          <SectionIntro eyebrow="Example projects" title="Concept designs for the businesses we love to build for." text="A selection of original concept designs that show our style and quality. These are example projects to help you understand our approach." />
           <button type="button" onClick={() => navigate("portfolio")} className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-sky-400">
             View all examples <ArrowRight className="h-4 w-4" />
           </button>
@@ -383,7 +367,7 @@ function HomePage({ navigate }: { navigate: (route: Route) => void }) {
 function ServicesPage({ navigate }: { navigate: (route: Route) => void }) {
   return (
     <>
-      <PageHero eyebrow="Services" title="Digital solutions built around clear business needs." text="Focused design, development, and ongoing website support for businesses that value quality, clarity, and reliability." />
+      <PageHero eyebrow="Services" title="Digital solutions built around clear business needs." text="Focused design, development, and ongoing website support for businesses that value quality, clear thinking, and measurable results." />
       <Section className="pt-8 sm:pt-12">
         <div className="divide-y divide-white/8 border-y border-white/8">
           {services.map((service, index) => <ServiceRow key={service.title} service={service} index={index} large />)}
@@ -443,7 +427,7 @@ function PortfolioPage({ navigate }: { navigate: (route: Route) => void }) {
       <Section className="border-y border-white/7 bg-[#0A101C]">
         <div data-reveal className="reveal grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <div>
-            <SectionIntro eyebrow="Website redesign" title="From an unclear website to a focused customer journey." text="A redesign should improve hierarchy, readability, mobile usability, and the path from first impression to enquiry." />
+            <SectionIntro eyebrow="Website redesign" title="From an unclear website to a focused customer journey." text="A redesign should improve hierarchy, readability, mobile usability, and the overall user experience." />
             <div className="mt-7 inline-flex rounded-xl border border-slate-700 bg-slate-950 p-1">
               <button type="button" onClick={() => setComparison("before")} className={`rounded-lg px-4 py-2 text-sm font-bold ${comparison === "before" ? "bg-slate-700 text-white" : "text-slate-400"}`}>Before</button>
               <button type="button" onClick={() => setComparison("after")} className={`rounded-lg px-4 py-2 text-sm font-bold ${comparison === "after" ? "bg-sky-400 text-slate-950" : "text-slate-400"}`}>After</button>
@@ -487,7 +471,7 @@ function TestimonialsSection() {
                   />
                 ))}
               </div>
-              <blockquote className="mt-5 text-sm leading-7 text-slate-300">“{testimonial.quote}”</blockquote>
+              <blockquote className="mt-5 text-sm leading-7 text-slate-300">"{testimonial.quote}"</blockquote>
             </div>
             <figcaption className="mt-6 flex items-center gap-3 border-t border-white/8 pt-5">
               <span className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-blue-600 to-sky-400 text-sm font-black text-white">
@@ -508,7 +492,7 @@ function TestimonialsSection() {
 function AboutPage({ navigate }: { navigate: (route: Route) => void }) {
   return (
     <>
-      <PageHero eyebrow="About" title="A South African web partner focused on useful, high-quality work." text="TL Web Solutions helps small businesses, entrepreneurs, local services, and growing companies build a clearer and more professional online presence." />
+      <PageHero eyebrow="About" title="A South African web partner focused on useful, high-quality work." text="TL Web Solutions helps small businesses, entrepreneurs, local services, and growing companies build websites that work hard for their business." />
       <Section className="pt-8 sm:pt-12">
         <div data-reveal className="reveal grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           <ImageWithSkeleton
@@ -623,7 +607,7 @@ function ContactPage({ notify }: { notify: (message: string) => void }) {
 
   return (
     <>
-      <PageHero eyebrow="Contact" title="Tell us what you need your website to do." text="Share your business, required features, and project goals. We will use that information to recommend an appropriate scope." />
+      <PageHero eyebrow="Contact" title="Tell us what you need your website to do." text="Share your business, required features, and project goals. We will use that information to recommend an approach and give you a realistic quote." />
       <Section className="pt-8 sm:pt-12">
         <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <div data-reveal className="reveal">
@@ -707,7 +691,7 @@ function ContactPage({ notify }: { notify: (message: string) => void }) {
               </div>
               <div className="mt-5">
                 <Field label="Project details" error={errors.message}>
-                  <textarea name="message" rows={6} value={form.message} onChange={(event) => update("message", event.target.value)} className="input resize-y" placeholder="What does your business do, what features do you need, and what should the website help you achieve?" />
+                  <textarea name="message" rows={6} value={form.message} onChange={(event) => update("message", event.target.value)} className="input resize-y" placeholder="What does your business need? Which features are important to you?" />
                 </Field>
               </div>
               <div className="mt-6 flex flex-col items-start justify-between gap-5 border-t border-white/8 pt-6 sm:flex-row sm:items-center">
@@ -719,7 +703,7 @@ function ContactPage({ notify }: { notify: (message: string) => void }) {
               </div>
               {status === "error" && (
                 <p role="alert" className="mt-5 text-sm font-semibold text-rose-400">
-                  We couldn’t send your message. Please try again, or email us directly at {SITE_CONFIG.email}.
+                  We couldn't send your message. Please try again, or email us directly at {SITE_CONFIG.email}.
                 </p>
               )}
             </form>
@@ -804,7 +788,7 @@ function ScopeNote({ navigate }: { navigate: (route: Route) => void }) {
         <div className="max-w-3xl">
           <p className="text-sm font-black uppercase tracking-[0.22em] text-sky-400">Project quotes</p>
           <h2 className="mt-4 text-3xl font-black tracking-[-0.035em] text-white sm:text-4xl">Every project is scoped individually.</h2>
-          <p className="mt-4 max-w-2xl leading-7 text-slate-400">The quote depends on the type of website, the features required, the amount of content, and the overall project scope. Share what you need and we will prepare an appropriate recommendation.</p>
+          <p className="mt-4 max-w-2xl leading-7 text-slate-400">The quote depends on the type of website, the features required, the amount of content, and the overall project scope. Share what you need and we'll get back to you with a realistic proposal.</p>
         </div>
         <PrimaryButton className="shrink-0" onClick={() => navigate("contact")}>
           Request a quote <ArrowRight className="h-4 w-4" />
@@ -914,7 +898,7 @@ function PricingGuide({ navigate }: { navigate: (route: Route) => void }) {
 function FinalCta({ navigate, title = "Ready to build a stronger online presence?" }: { navigate: (route: Route) => void; title?: string }) {
   return (
     <section className="px-5 py-20 sm:px-8 sm:py-28">
-      <div data-reveal className="reveal mx-auto max-w-7xl overflow-hidden rounded-3xl border border-sky-400/20 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,.18),transparent_38%),linear-gradient(135deg,#0D1A32,#09111F)] px-6 py-14 text-center sm:px-12 sm:py-20">
+      <div data-reveal className="reveal mx-auto max-w-7xl overflow-hidden rounded-3xl border border-sky-400/20 bg-[radial-gradient(circle_at_top_right,rgba(56,189,248,.18),transparent_38%),linear-gradient(135deg,#070B14_0%,#0D1B2A_100%)] p-10 text-center sm:p-16">
         <Sparkles className="mx-auto h-6 w-6 text-sky-400" />
         <h2 className="mx-auto mt-5 max-w-3xl text-3xl font-black tracking-[-0.04em] text-white sm:text-5xl">{title}</h2>
         <p className="mx-auto mt-5 max-w-xl leading-7 text-slate-400">Tell us about your business, your goals, and the features you have in mind.</p>
@@ -997,11 +981,13 @@ function ImageWithSkeleton({ src, alt, className }: { src: string; alt: string; 
 }
 
 function PrimaryButton({ children, onClick, className = "", type = "button", disabled = false }: { children: ReactNode; onClick?: () => void; className?: string; type?: "button" | "submit"; disabled?: boolean }) {
-  return <button type={type} onClick={onClick} disabled={disabled} className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-sky-400 px-6 py-3 text-sm font-black text-white shadow-lg shadow-blue-950/40 transition hover:-translate-y-0.5 hover:shadow-sky-950/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 disabled:cursor-not-allowed disabled:opacity-60 disabled:hover:translate-y-0 ${className}`}>{children}</button>;
+  return <button type={type} onClick={onClick} disabled={disabled} className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-sky-400 px-6 py-3 text-sm font-black text-white shadow-lg shadow-blue-950/40 transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400 disabled:opacity-50 hover:enabled:-translate-y-0.5 ${className}`}>{children}</button>;
 }
 
 function SecondaryButton({ children, onClick }: { children: ReactNode; onClick: () => void }) {
-  return <button type="button" onClick={onClick} className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-600 bg-slate-950/40 px-6 py-3 text-sm font-black text-white backdrop-blur transition hover:border-sky-400 hover:text-sky-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400">{children}</button>;
+  return <button type="button" onClick={onClick} className="inline-flex min-h-11 items-center justify-center rounded-xl border border-slate-600 bg-slate-950/40 px-6 py-3 text-sm font-black text-white transition hover:border-sky-400 hover:text-sky-400">
+    {children}
+  </button>;
 }
 
 function Field({ label, error, optional, children }: { label: string; error?: string; optional?: boolean; children: ReactNode }) {
@@ -1026,7 +1012,7 @@ function Footer({ navigate }: { navigate: (route: Route, scrollTarget?: string) 
           <div>
             <p className="text-xs font-black uppercase tracking-[0.2em] text-slate-500">Navigate</p>
             <div className="mt-4 grid gap-3">
-              {navigation.map((item) => <button key={item.label} type="button" onClick={() => navigate(item.route, item.scrollTo)} className="text-left text-sm font-semibold text-slate-300 hover:text-sky-400">{item.label}</button>)}
+              {navigation.map((item) => <button key={item.label} type="button" onClick={() => navigate(item.route, item.scrollTo)} className="text-left text-sm font-semibold text-slate-300 hover:text-slate-100" >{item.label}</button>)}
             </div>
           </div>
           <div>
@@ -1057,7 +1043,7 @@ function CookieBanner({ onChoice, navigate }: { onChoice: (choice: "accepted" | 
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-bold text-white">Cookie preferences</p>
-          <p className="mt-1 max-w-xl text-xs leading-5 text-slate-400">We use optional analytics to understand website performance. You can accept analytics or continue with necessary storage only. <button type="button" onClick={() => navigate("privacy")} className="text-sky-400 underline">Privacy Policy</button></p>
+          <p className="mt-1 max-w-xl text-xs leading-5 text-slate-400">We use optional analytics to understand website performance. You can accept analytics or continue with necessary storage only.</p>
         </div>
         <div className="flex shrink-0 gap-2">
           <button type="button" onClick={() => onChoice("necessary")} className="rounded-lg border border-slate-700 px-4 py-2 text-xs font-bold text-slate-300 hover:border-slate-500">Necessary only</button>
@@ -1072,7 +1058,7 @@ function LegalPage({ type, navigate }: { type: "privacy" | "terms"; navigate: (r
   const privacy = type === "privacy";
   return (
     <>
-      <PageHero eyebrow="Legal" title={privacy ? "Privacy Policy" : "Terms of Service"} text={privacy ? "How TL Web Solutions handles information submitted through this website." : "General terms that apply when using the TL Web Solutions website."} />
+      <PageHero eyebrow="Legal" title={privacy ? "Privacy Policy" : "Terms of Service"} text={privacy ? "How TL Web Solutions handles information submitted through this website." : "General terms and conditions for working with TL Web Solutions."} />
       <Section className="pt-8 sm:pt-12">
         <div className="prose-dark mx-auto max-w-3xl space-y-8 text-sm leading-7 text-slate-400">
           {privacy ? (
