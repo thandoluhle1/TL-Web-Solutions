@@ -712,7 +712,7 @@ function ProjectCard({ project }: { project: (typeof projects)[number] }) {
       <div className="relative">
         <ImageWithSkeleton src={project.image} alt={project.alt} className="aspect-[16/10]" />
         <span className="absolute left-4 top-4 inline-flex rounded-full bg-slate-950/80 px-3 py-1 text-[11px] font-black uppercase tracking-[0.12em] text-sky-300 backdrop-blur">
-          Concept Design
+          What We Build
         </span>
       </div>
       <div className="flex flex-1 flex-col p-6 sm:p-7">
