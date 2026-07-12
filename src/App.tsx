@@ -194,9 +194,15 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#070B14] pb-20 text-slate-100 selection:bg-sky-400 selection:text-slate-950 sm:pb-0">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-sky-400 focus:px-4 focus:py-2 focus:text-sm focus:font-black focus:text-slate-950"
+      >
+        Skip to main content
+      </a>
       <Header route={route} menuOpen={menuOpen} setMenuOpen={setMenuOpen} navigate={navigate} />
 
-      <main key={route} className="page-enter">
+      <main key={route} id="main-content" tabIndex={-1} className="page-enter">
         {route === "home" && <HomePage navigate={navigate} />}
         {route === "services" && <ServicesPage navigate={navigate} />}
         {route === "portfolio" && <PortfolioPage navigate={navigate} />}
@@ -590,7 +596,7 @@ function AboutPage({ navigate }: { navigate: (route: Route) => void }) {
 }
 
 function ContactPage({ notify }: { notify: (message: string) => void }) {
-  const [form, setForm] = useState({ name: "", email: "", business: "", service: "", message: "" });
+  const [form, setForm] = useState({ name: "", email: "", business: "", service: "", message: "", website: "" });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
 
@@ -601,6 +607,13 @@ function ContactPage({ notify }: { notify: (message: string) => void }) {
 
   const submit = async (event: FormEvent) => {
     event.preventDefault();
+
+    if (form.website) {
+      setStatus("success");
+      setForm({ name: "", email: "", business: "", service: "", message: "", website: "" });
+      return;
+    }
+
     const nextErrors: Record<string, string> = {};
     if (!form.name.trim()) nextErrors.name = "Please enter your name.";
     if (!/^\S+@\S+\.\S+$/.test(form.email)) nextErrors.email = "Please enter a valid email address.";
@@ -631,7 +644,7 @@ function ContactPage({ notify }: { notify: (message: string) => void }) {
 
       if (response.ok) {
         setStatus("success");
-        setForm({ name: "", email: "", business: "", service: "", message: "" });
+        setForm({ name: "", email: "", business: "", service: "", message: "", website: "" });
         notify("Thanks — your message has been sent.");
       } else {
         setStatus("error");
@@ -708,6 +721,18 @@ function ContactPage({ notify }: { notify: (message: string) => void }) {
             </div>
           ) : (
             <form onSubmit={submit} noValidate data-reveal className="reveal rounded-2xl border border-white/8 bg-[#0A101C] p-6 sm:p-8">
+              <div className="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" aria-hidden="true">
+                <label htmlFor="website">Leave this field empty</label>
+                <input
+                  type="text"
+                  id="website"
+                  name="website"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  value={form.website}
+                  onChange={(event) => update("website", event.target.value)}
+                />
+              </div>
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Name" error={errors.name}>
                   <input name="name" value={form.name} onChange={(event) => update("name", event.target.value)} className="input" autoComplete="name" />
