@@ -48,11 +48,24 @@ function FloatingWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Chat with us on WhatsApp"
-      className="group fixed bottom-6 left-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/30 transition hover:brightness-110 hover:-translate-y-0.5"
+      className="group fixed bottom-24 left-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/30 transition hover:brightness-110 hover:-translate-y-0.5 sm:bottom-6"
     >
       <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-60 animate-ping [animation-duration:2.4s] group-hover:opacity-0" />
       <WhatsAppIcon className="relative h-7 w-7" />
     </a>
+  );
+}
+
+function MobileStickyCta({ navigate }: { navigate: (route: Route) => void }) {
+  return (
+    <div
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#070B14]/95 px-4 pt-3 backdrop-blur-xl sm:hidden"
+      style={{ paddingBottom: "calc(0.75rem + env(safe-area-inset-bottom))" }}
+    >
+      <PrimaryButton className="w-full" onClick={() => navigate("contact")}>
+        Get a free quote <ArrowRight className="h-4 w-4" />
+      </PrimaryButton>
+    </div>
   );
 }
 
@@ -180,7 +193,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#070B14] text-slate-100 selection:bg-sky-400 selection:text-slate-950">
+    <div className="min-h-screen bg-[#070B14] pb-20 text-slate-100 selection:bg-sky-400 selection:text-slate-950 sm:pb-0">
       <Header route={route} menuOpen={menuOpen} setMenuOpen={setMenuOpen} navigate={navigate} />
 
       <main key={route} className="page-enter">
@@ -197,7 +210,7 @@ export default function App() {
       <Footer navigate={navigate} />
 
       {toast && (
-        <div role="status" className="fixed bottom-6 left-1/2 z-[90] flex -translate-x-1/2 items-center gap-2 rounded-xl border border-sky-400/30 bg-slate-900 px-4 py-3 text-sm font-semibold text-sky-300">
+        <div role="status" className="fixed bottom-24 left-1/2 z-[90] flex -translate-x-1/2 items-center gap-2 rounded-xl border border-sky-400/30 bg-slate-900 px-4 py-3 text-sm font-semibold text-sky-300 sm:bottom-6">
           <Check className="h-4 w-4 text-sky-400" />
           {toast}
         </div>
@@ -208,13 +221,15 @@ export default function App() {
           type="button"
           aria-label="Scroll to top"
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-6 right-5 z-40 grid h-11 w-11 place-items-center rounded-full border border-slate-700 bg-slate-900 text-white shadow-xl transition hover:border-sky-400 hover:text-sky-400"
+          className="fixed bottom-24 right-5 z-40 grid h-11 w-11 place-items-center rounded-full border border-slate-700 bg-slate-900 text-white shadow-xl transition hover:border-sky-400 hover:text-sky-400 sm:bottom-6"
         >
           <ArrowUp className="h-4 w-4" />
         </button>
       )}
 
       <FloatingWhatsApp />
+
+      <MobileStickyCta navigate={navigate} />
 
       {!cookieChoice && <CookieBanner onChoice={setCookies} navigate={navigate} />}
     </div>
@@ -399,7 +414,7 @@ function ProcessSection() {
   return (
     <Section className="border-y border-white/7 bg-[#0A101C]">
       <div data-reveal className="reveal">
-        <SectionIntro eyebrow="Our Process" title="How we work with you, step by step." />
+        <SectionIntro eyebrow="Our Process" title="How we work with you, step by step." text="Most projects go from first conversation to live website in 4–8 weeks." />
         <div className="mt-12 space-y-8">
           {processSteps.map((step) => (
             <div key={step.number} className="grid gap-5 sm:grid-cols-[80px_1fr] sm:gap-8">
@@ -1060,7 +1075,7 @@ function Footer({ navigate }: { navigate: (route: Route, scrollTarget?: string) 
 
 function CookieBanner({ onChoice, navigate }: { onChoice: (choice: "accepted" | "necessary") => void; navigate: (route: Route) => void }) {
   return (
-    <div className="fixed inset-x-4 bottom-4 z-50 mx-auto max-w-3xl rounded-2xl border border-white/10 bg-slate-900/95 p-5 shadow-2xl shadow-black/60 backdrop-blur-xl sm:p-6">
+    <div className="fixed inset-x-4 bottom-24 z-50 mx-auto max-w-3xl rounded-2xl border border-white/10 bg-slate-900/95 p-5 shadow-2xl shadow-black/60 backdrop-blur-xl sm:bottom-4 sm:p-6">
       <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <p className="font-bold text-white">Cookie preferences</p>
