@@ -73,7 +73,7 @@ const navigation: { label: string; route: MainRoute; path: string; scrollTo?: st
   { label: "Home", route: "home", path: "/" },
   { label: "Services", route: "services", path: "/services" },
   { label: "Pricing", route: "services", path: "/services", scrollTo: "pricing" },
-  { label: "Portfolio", route: "portfolio", path: "/portfolio" },
+  { label: "What We Build", route: "portfolio", path: "/portfolio" },
   { label: "About", route: "about", path: "/about" },
   { label: "Contact", route: "contact", path: "/contact" },
 ];
@@ -381,9 +381,9 @@ function HomePage({ navigate }: { navigate: (route: Route, scrollTarget?: string
 
       <Section>
         <div data-reveal className="reveal flex flex-col justify-between gap-5 sm:flex-row sm:items-end">
-          <SectionIntro eyebrow="Design Concepts" title="Examples of how we approach different types of websites." text="Below are concept designs that demonstrate our process and design thinking for various business types." />
+          <SectionIntro eyebrow="What We Build" title="Examples of how we approach different types of websites." text="Every business is different, so every website should be too. Here's how we think about design, structure, and features for different types of businesses." />
           <button type="button" onClick={() => navigate("portfolio")} className="inline-flex shrink-0 items-center gap-2 text-sm font-bold text-sky-400">
-            View all concepts <ArrowRight className="h-4 w-4" />
+            See all specializations <ArrowRight className="h-4 w-4" />
           </button>
         </div>
         <div className="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -497,14 +497,14 @@ function PortfolioPage({ navigate }: { navigate: (route: Route) => void }) {
   return (
     <>
       <PageHero
-        eyebrow="Design Concepts"
+        eyebrow="What We Build"
         title="How we approach different website types."
-        text="Below are concept designs that showcase our design thinking and capabilities. These demonstrate how we structure, present, and optimise websites for different business types."
+        text="Every business is different, so every website should be too. Here's how we think about design, structure, and features for different types of businesses — and what you can expect when we build yours."
       />
       <Section className="pt-8 sm:pt-12">
         <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-sky-400/25 bg-sky-400/10 px-4 py-2 text-xs font-black uppercase tracking-[0.14em] text-sky-300">
           <Sparkles className="h-3.5 w-3.5" />
-          Concept Designs · Design Demonstrations
+          Design Specializations
         </div>
         <div className="mb-10 flex flex-wrap gap-2" role="group" aria-label="Filter example projects">
           {categories.map((item) => (
