@@ -23,8 +23,8 @@ export const PAGE_META = {
     description: "Professional website design, redesign, maintenance, SEO, performance optimisation, and responsive development in South Africa.",
   },
   portfolio: {
-    title: "Portfolio | TL Web Solutions",
-    description: "Explore website design directions for restaurants, salons, trades, service businesses, and growing South African brands.",
+    title: "What We Build | TL Web Solutions",
+    description: "See how TL Web Solutions approaches website design for restaurants, service businesses, e-commerce, and local South African businesses.",
   },
   about: {
     title: "About | TL Web Solutions",
