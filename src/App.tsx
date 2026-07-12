@@ -41,6 +41,21 @@ function WhatsAppIcon({ className = "" }: { className?: string }) {
   );
 }
 
+function FloatingWhatsApp() {
+  return (
+    <a
+      href={whatsappUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp"
+      className="group fixed bottom-6 left-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-xl shadow-black/30 transition hover:brightness-110 hover:-translate-y-0.5"
+    >
+      <span className="absolute inset-0 rounded-full bg-[#25D366] opacity-60 animate-ping [animation-duration:2.4s] group-hover:opacity-0" />
+      <WhatsAppIcon className="relative h-7 w-7" />
+    </a>
+  );
+}
+
 const navigation: { label: string; route: MainRoute; path: string; scrollTo?: string }[] = [
   { label: "Home", route: "home", path: "/" },
   { label: "Services", route: "services", path: "/services" },
@@ -199,6 +214,8 @@ export default function App() {
         </button>
       )}
 
+      <FloatingWhatsApp />
+
       {!cookieChoice && <CookieBanner onChoice={setCookies} navigate={navigate} />}
     </div>
   );
@@ -280,7 +297,7 @@ function Header({
   );
 }
 
-function HomePage({ navigate }: { navigate: (route: Route) => void }) {
+function HomePage({ navigate }: { navigate: (route: Route, scrollTarget?: string) => void }) {
   return (
     <>
       <section className="relative isolate min-h-[calc(100svh-72px)] overflow-hidden">
@@ -299,13 +316,18 @@ function HomePage({ navigate }: { navigate: (route: Route) => void }) {
               Websites designed to move your business forward.
             </h1>
             <p className="mt-7 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-              Professional web design built with quality, clarity, and your business goals in mind. We create websites that work, look great, and deliver results.
+              Professional web design built with quality, clarity, and your business goals in mind. You work directly with your designer from the first message to launch — no account managers, no middlemen.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <PrimaryButton onClick={() => navigate("contact")}>
-                Start a project <ArrowRight className="h-4 w-4" />
+                Get a free quote <ArrowRight className="h-4 w-4" />
               </PrimaryButton>
-              <SecondaryButton onClick={() => navigate("portfolio")}>View our work</SecondaryButton>
+              <SecondaryButton onClick={() => navigate("services", "pricing")}>See pricing</SecondaryButton>
+            </div>
+            <div className="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
+              <TrustPoint text="Replies within 24 hours" />
+              <TrustPoint text="No-obligation quotes" />
+              <TrustPoint text="Work directly with your designer" />
             </div>
           </div>
         </div>
@@ -361,6 +383,15 @@ function HomePage({ navigate }: { navigate: (route: Route) => void }) {
 
       <FinalCta navigate={navigate} />
     </>
+  );
+}
+
+function TrustPoint({ text }: { text: string }) {
+  return (
+    <span className="flex items-center gap-2 text-xs font-bold uppercase tracking-[0.08em] text-slate-400 sm:text-sm">
+      <Check className="h-4 w-4 shrink-0 text-sky-400" />
+      {text}
+    </span>
   );
 }
 
@@ -599,7 +630,7 @@ function ContactPage({ notify }: { notify: (message: string) => void }) {
 
   return (
     <>
-      <PageHero eyebrow="Contact" title="Let's discuss your website." text="Share your business, goals, and any features you need. We'll review your project and get back to you with a realistic approach and quote." />
+      <PageHero eyebrow="Contact" title="Let's discuss your website." text="Share your business, goals, and any features you need. We'll review your project and get back to you within 24 hours with a realistic approach and quote." />
       <Section className="pt-8 sm:pt-12">
         <div className="grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <div data-reveal className="reveal">
@@ -651,7 +682,7 @@ function ContactPage({ notify }: { notify: (message: string) => void }) {
                 <Check className="h-6 w-6" />
               </span>
               <h2 className="mt-6 text-2xl font-black text-white">Message received</h2>
-              <p className="mt-3 max-w-md leading-7 text-slate-400">Thank you for reaching out. We'll review your project details and reply to your email shortly.</p>
+              <p className="mt-3 max-w-md leading-7 text-slate-400">Thank you for reaching out. We'll review your project details and reply to your email within 24 hours.</p>
               <button
                 type="button"
                 onClick={() => setStatus("idle")}
