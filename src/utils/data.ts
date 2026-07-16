@@ -292,7 +292,7 @@ export const faqs = [
   },
   {
     question: "How long does a website project take?",
-    answer: "Timeline depends on the number of pages, content availability, and complexity. A typical project takes 4–8 weeks. We'll confirm a realistic schedule once we understand your requirements.",
+    answer: "Most projects are completed in one week or less, depending on the number of pages, content availability, and complexity. We'll confirm a realistic schedule once we understand your requirements.",
   },
   {
     question: "Will my website work on mobile devices?",
