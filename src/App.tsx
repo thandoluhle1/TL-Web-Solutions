@@ -420,7 +420,7 @@ function ProcessSection() {
   return (
     <Section className="border-y border-white/7 bg-[#0A101C]">
       <div data-reveal className="reveal">
-        <SectionIntro eyebrow="Our Process" title="How we work with you, step by step." text="Most projects go from first conversation to live website in 4–8 weeks." />
+        <SectionIntro eyebrow="Our Process" title="How we work with you, step by step." text="Most projects go from first conversation to live website in one week or less." />
         <div className="mt-12 space-y-8">
           {processSteps.map((step) => (
             <div key={step.number} className="grid gap-5 sm:grid-cols-[80px_1fr] sm:gap-8">
